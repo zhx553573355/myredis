@@ -52,7 +52,7 @@ public class UserServiceImpl implements IUserService {
     public void insertUser(User user) {
     	System.out.println("------------开始添加数据库的数据-------------");
         this.iUserDao.insertUser(user);
-    }
+    } 
 
     @CacheEvict(value= {"getAllUser","getUserById","findUsers"},allEntries=true)
     @Override
