@@ -5,7 +5,7 @@ import zx.pojo.User;
 
 /**
  * user表的操作接口
- * @author YaoQi
+ * @author zhangxing
  */
 public interface IUserService {
 

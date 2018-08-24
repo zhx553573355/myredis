@@ -101,11 +101,6 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.12</version>
-		</dependency>
 		<!-- mybatis orm related.....end -->
 
 		<!-- project log related.....start -->
@@ -147,16 +142,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
-		<resources>
-            <resource>
-                <directory>src</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-		</resources>
 	</build>
 </project> 

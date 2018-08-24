@@ -36,21 +36,21 @@ public class UserServiceImpl implements IUserService {
     @Cacheable("getUserById") //标注该方法查询的结果进入缓存，再次访问时直接读取缓存中的数据
     @Override
     public User getUserById(int userId) {
-    	System.out.println("-----开始查询数据库的数据------");
+    	logger.info("开始查询数据库的数据：");
         return this.iUserDao.selectByPrimaryKey(userId);
     }
 
     @Cacheable("getAllUser")
     @Override
     public List<User> getAllUser() {
-    	System.out.println("------------开始查询数据库的数据-------------");
+    	logger.info("开始查询数据库的数据：");
         return this.iUserDao.selectAllUser();
     }
 
     @CacheEvict(value= {"getAllUser","getUserById","findUsers"},allEntries=true)//清空缓存，allEntries变量表示所有对象的缓存都清除
     @Override
     public void insertUser(User user) {
-    	System.out.println("------------开始添加数据库的数据-------------");
+    	logger.info("开始添加数据库的数据：");
         this.iUserDao.insertUser(user);
     } 
 

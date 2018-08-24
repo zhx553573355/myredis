@@ -44,13 +44,10 @@ public class UserController {
      */
     @RequestMapping(value = "/showUser", method = RequestMethod.GET)
     public String showUsers(Model model) {
-    	logger.info("**********showUsers********");
-    	System.out.println("------showUsers--------");
         List<User> userList = new ArrayList<User>();
-        System.out.println("------userList--------");
         userList = userService.getAllUser();
         model.addAttribute("userList", userList); // 填充数据到model
-        System.out.println(userList.toString());
+       logger.info("userList:"+userList.toString());
         return "redis/redis";
     }
 
@@ -65,14 +62,13 @@ public class UserController {
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     @ResponseBody
     public ModelMap addUser(String userName, String sex, int age) {
-        System.out.println("******addUser********");
-        System.out.println(userName + sex + age);
         User user = new User();
         user.setsex(sex);
         user.setUserName(userName);
         user.setAge(age);
         userService.insertUser(user);
         ModelMap model = new ModelMap();
+        logger.info("user:"+user.toString());
         model.addAttribute("result", "添加成功");
         return model;
     }

@@ -28,7 +28,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     public RedisCacheConfig() {
         super();
     }
-
+ 
     /**
      * 带参数的构造方法 初始化所有的成员变量
      * 
