@@ -93,4 +93,11 @@
 		<constructor-arg ref="redisCacheManager" />
 	</bean>
 	<!-- redis config end -->
+	
+	<!-- 项目启动时进行缓存 
+	<bean id="syscodeCache" class="zx.init.SysCodeCache" scope="singleton"  init-method="init"></bean>
+	-->
+	<bean id="redisStart" class="zx.init.RedisStart" scope="singleton"  init-method="init"></bean>
+	
+	
 </beans> 

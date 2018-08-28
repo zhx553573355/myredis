@@ -23,8 +23,8 @@ import redis.clients.jedis.SortingParams;
  */
 public class testRedisController {
 
-	private static final Logger logger=Logger.getLogger(testRedisController.class);
-	
+	private static final Logger logger = Logger.getLogger(testRedisController.class);
+
 	private Jedis jedis;// 非切片额客户端连接
 	private JedisPool jedisPool;// 非切片连接池
 	private ShardedJedis shardedJedis;// 切片额客户端连接
@@ -45,8 +45,7 @@ public class testRedisController {
 		JedisPoolConfig config = new JedisPoolConfig();
 		config.setMaxIdle(5);
 		config.setTestOnBorrow(false);
-
-		jedisPool = new JedisPool(config, "127.0.0.1", 6379);
+		jedisPool = new JedisPool(config, "127.0.0.1", 6379, 3000, "redis");
 	}
 
 	/**
@@ -59,7 +58,9 @@ public class testRedisController {
 		config.setTestOnBorrow(false);
 		// slave链接
 		List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
-		shards.add(new JedisShardInfo("127.0.0.1", 6379, "myredis"));
+		JedisShardInfo jedisinfo = new JedisShardInfo("127.0.0.1", 6379);
+		jedisinfo.setPassword("redis");
+		shards.add(jedisinfo);
 		// 构造池
 		shardedJedisPool = new ShardedJedisPool(config, shards);
 	}
@@ -346,14 +347,14 @@ public class testRedisController {
 
 	public void show() {
 		KeyOperate();
-//		StringOperate();
-//		ListOperate();
-//		SetOperate();
-//		SortedSetOperate();
-//		HashOperate();
+		// StringOperate();
+		// ListOperate();
+		// SetOperate();
+		// SortedSetOperate();
+		// HashOperate();
 		jedisPool.returnResource(jedis);
 		shardedJedisPool.returnResource(shardedJedis);
-	} 
+	}
 
 	public static void main(String args[]) {
 		new testRedisController().show();

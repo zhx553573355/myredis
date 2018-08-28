@@ -62,5 +62,16 @@ public class SysCodeController {
 		map.addAttribute("result", "添加成功");
 		return "/redis/redis";
 	}
+	
+	@RequestMapping(value="/showSysCodeCache",method=RequestMethod.GET)
+	public String showSysCodeCache(String code){
+		List<SysCode> codes=sysCodeService.getSysCodeCache(code);
+		if(codes !=null){
+			logger.info("syscodes:"+codes.toString());
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute("result", "添加成功");
+		return "/redis/redis";
+	}
 
 }
